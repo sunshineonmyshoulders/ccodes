@@ -1,0 +1,87 @@
+O include serve para incluir um arquivo externo. A diretiva #include <stdio.h>, inclui todo o código contido no stdio.h.
+
+Isso seria o equivalente a fazer um:
+
+#include "/usr/bin/stdio"
+
+Mas não é necessário, pois o caminho é dinâmico.
+
+Os programas em C são divididos em funções, funções são blocos de códigos que podem ser reutilizados, no caso do C, todo programa deve conter uma função principal.
+
+As funções são blocos de códigos que recebem alguma informação e retornam algo.
+
+int main(void) -> int é o tipo de dado que a função irá retornar
+
+main se refere ao nome da função, nesse caso a funçaõ principal
+
+entre () entrda os argumentos/parâmetros que a função receberá, nesse caso void indica que ela não receberá nada.
+
+O valor de retorno:
+
+return 0;
+
+É um padrão/conveção de retorno de execução bem sucedida. Sendo 0 um número inteiro, por isso o int no começo da função.
+
+Para ver esse retorno no bash, usa-se echo $?
+
+Isso é importante para tratar situações em que houve alguma falha na execução do programa.
+
+Inclusive existe até uma tabela de código de erro, onde cada número indica um problema específoco, de acordo com a convenção.
+
+O printf(), é uma função que recebe um ou mais argumentos. Não precisamos defini-la, pois ela já esta definida dentro de <stdio.h>. É possível saber mais usando o manual do programador linux
+
+man 3 printf
+
+A função printf() retorna um número inteiro, que é igual ao número de caracteres impressos, incluindo \n, tirando apenas o null byte.
+
+A função pode receber como parâmetero valores que serão sobreescritos, %d serve para sobreescrever números inteiros
+
+%c -> unico caracter
+%o , %d , %x -> um inteiro octal, decimal ou hexa
+%u -> um long int em base decimal sem sinal 
+%ld -> numero int long em base decimal
+%f , %lf -> numero real de precisão simples ou dupla
+%s -> uma cadeia de caracteres (string)
+%% -> um unico sinal de %
+
+============== AULA 2 ========== VARIÁVEIS BOOLEANAS E DO TIPO CHAR
+
+Quando criamos uma variávei, devemos definir o espaço na memória que deverá ser alocado para ela.
+
+sizeof serve para verificarmos o valor alocado para uma variável (em bytes).
+
+também é possível utilizar o sizeof pelo tipo de variávei, por exemplo, sizeof char.
+
+Uma variável tipo char com um caractere possui 8 bits, 1 byte. Pode-se chegar ao valor em bytes multiplicando o valor de  sizeof * 8. 
+
+
+Então qual o maior número possível nessa variável? O maior numero possível seria com todos os bits sendo 1.
+
+11111111 => 255 (256 possibilidades, 0 a 255).
+
+O tamanho (alocamento de memória) não muda mesmo que o valor da variável seja mudado
+
+Se colocarmos um valor maior que 255, o compilador apontará um erro de overflow, e a variável será zerada..
+
+Se colocarmos o valor = a 255, o valor da variável ficará como -1.
+
+O valor que estamos atribuindo esta sendo convertido em char para ficar dentro da variável desse tipo, e ele fica 
+negativo devido ao fato de o maior numero possível para variáveis char com sinal(que é o padrão) é 128. O primeiro bit é
+utilizado para representar o sinal, por isso se colocarmos o valor 127, funcionara normalmente, se colocarmos 128, a 
+variável ficara -128.
+
+Podemos verificar essas conversões utilizando o bc, convertendo a entrada de binários para base decimal.
+
+Para evitarmos isso, podemos deixar a variável como unsigned, onde assim poderemos colocar um valor de 0 a 255, mas não poderemos utilizar numeros negativos.
+
+==== BOOLEANS =====
+
+Para poder utilizar variáveis do tipo boolean, é necessário incluir o stdbool.h, que define true como 1 e false como 0.
+
+Ou podemos substituir bool por _Bool (com underscore), para dispensar o uso de stdbool.h
+
+O boolean é testado sempre contra o 0, se for 0 é falso, se for qualquer outra coisa é verdadeiro, no caso do C (1), como definido em stdbool.h.
+
+dw -> deleta a palavra no vi.
+
+================ AULA 3 ===============
